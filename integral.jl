@@ -1,5 +1,6 @@
 #=
 Using Gauss-Legendre quadrature
+https://en.wikipedia.org/wiki/Gaussian_quadrature#Gauss%E2%80%93Legendre_quadrature
 =#
 module Gauss
 
@@ -35,8 +36,8 @@ gauss4(space::Space, f) = gaussian_quadrature(space, f, GAUSS_4)
 
 function gaussian_quadrature(space::Space, f, gauss_dict::Dict)::Real
     partial_sum = 0
-    # Integrate each divider 
-    for i in 1:space.dividers
+    # Integrate over each interval 
+    for i in 1:space.intervals
         #∫(a,b) f(x)dx = (b-a)/2 ∫(-1, 1) f((b-a)/2 x + (a+b/2)) dx
         a, b = get_interval(space, i)
         ζ = (b-a)/2
